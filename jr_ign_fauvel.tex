@@ -1,4 +1,4 @@
-% Created 2018-03-14 Wed 21:40
+% Created 2018-03-14 Wed 22:28
 % Intended LaTeX compiler: pdflatex
 \documentclass[pressentation,10pt,aspectratio=1610, xcolor=table]{beamer}
 \usepackage[utf8]{inputenc}
@@ -94,8 +94,8 @@ minimum height=4em, drop shadow]
 \end{frame}
 
 \section{Occupation et usage des sols par télédétection}
-\label{sec:org728c109}
-\begin{frame}[label={sec:orgd133719}]{Occupation et usage des sols}
+\label{sec:org9394a74}
+\begin{frame}[label={sec:org3aabfae}]{Occupation et usage des sols}
 \begin{block}{Qu'est ce que c'est ?}
 \begin{itemize}
 \item Couverture (bio)-physique des terres émergées
@@ -121,7 +121,7 @@ minimum height=4em, drop shadow]
 \end{itemize}
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:orgcee23c9}]{OCS \& télédétection}
+\begin{frame}[label={sec:orgabf36f0}]{OCS \& télédétection}
 \begin{columns}
 \begin{column}{0.5\columnwidth}
 \begin{itemize}
@@ -145,7 +145,7 @@ $$ f:\mathbf{x} \mapsto z $$
 \end{column}
 \end{columns}
 \end{frame}
-\begin{frame}[label={sec:orgadc16d6}]{CES OSO}
+\begin{frame}[label={sec:org5cbf980}]{CES OSO}
 \begin{center}
 \includegraphics[width=0.8\linewidth]{./figures/imagesat_oso.jpg}
 \end{center}
@@ -170,14 +170,15 @@ $$ f:\mathbf{x} \mapsto z $$
 \end{frame}
 
 \section{Le produit OSO actuel}
-\label{sec:orgf57d9c7}
-\begin{frame}[label={sec:orgb359c5d}]{Caractéristiques}
+\label{sec:org09e2a6d}
+\begin{frame}[label={sec:org2337b5a}]{Caractéristiques}
 \begin{itemize}
 \item Une cartographie annuelle gratuite et rapidement disponible,
 \begin{itemize}
 \item Pour la période \og Janvier-Décembre\fg
 \item 17 Classes
 \item Au format raster ou vecteur (par département)
+\item \url{http://osr-cesbio.ups-tlse.fr/\~oso/}
 \end{itemize}
 \item Une chaîne de traitements \emph{open-source}:
 \begin{center}
@@ -193,7 +194,7 @@ Scale Using Satellite Image  Time Series}.  \(\textsc{Remote Sens.}\)
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orgc08fb25}]{Nomenclature actuelle}
+\begin{frame}[label={sec:org3a131ee}]{Nomenclature actuelle}
 \begin{columns}
 \begin{column}{0.5\columnwidth}
 \small
@@ -237,13 +238,20 @@ Scale Using Satellite Image  Time Series}.  \(\textsc{Remote Sens.}\)
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:orgcd8fc59}]{OCS France pour 2016}
+\begin{frame}[label={sec:orgc58e00b}]{OCS France pour 2016}
 \begin{center}
 \includegraphics[width=\linewidth]{./figures/OSO_V4.png}
 \end{center}
 \end{frame}
 
-\begin{frame}[fragile,label={sec:orgf15a77c}]{Précision de classification}
+\begin{frame}[label={sec:org0a681b7}]{Zoom}
+\begin{center}
+  \only<1>{\includegraphics[width=0.8\linewidth]{figures/ensg_ortho.png}}
+  \only<2>{\includegraphics[width=0.8\linewidth]{figures/ensg_oso_10m.png}}
+  \only<3>{\includegraphics[width=0.8\linewidth]{figures/ensg_oso_20m.png}}
+\end{center}
+\end{frame}
+\begin{frame}[fragile,label={sec:orgf322e1f}]{Précision de classification}
 \scriptsize
 \pgfplotstableset{
     color cells/.style={
@@ -282,10 +290,9 @@ VIN,5,1,0,1,1,0,0,3,0,0,0,0,0,0,2,0,82
 }
 \end{center}
 \end{frame}
-
 \section{La chaîne de traitements}
-\label{sec:org6d1d8bd}
-\begin{frame}[label={sec:orgcb7567f}]{Étapes de traitements}
+\label{sec:orgcd98572}
+\begin{frame}[label={sec:orgd47816a}]{Étapes de traitements}
   \begin{center}
     \begin{tikzpicture}[font=\scriptsize, transform shape,scale=0.72]
       \path \datanode{inref}{Reference Data};
@@ -330,7 +337,7 @@ VIN,5,1,0,1,1,0,0,3,0,0,0,0,0,0,2,0,82
     \end{tikzpicture}
 \end{center}
 \end{frame}
-\begin{frame}[label={sec:orgf6ffa9f}]{Extraction des données d'entraînement/validation}
+\begin{frame}[label={sec:org52bf162}]{Extraction des données d'entraînement/validation}
 \begin{onlyenv}<1>
 \begin{center}
   \begin{tikzpicture}[font=\scriptsize, scale=0.52, transform shape]
@@ -408,7 +415,7 @@ VIN,5,1,0,1,1,0,0,3,0,0,0,0,0,0,2,0,82
 \end{onlyenv}
 \end{frame}
 
-\begin{frame}[label={sec:org2e50dd0}]{Ré-échantillonage temporel}
+\begin{frame}[label={sec:org3a5112b}]{Ré-échantillonage temporel}
 \begin{onlyenv}<1>
 \begin{center}
 \begin{center}
@@ -420,7 +427,7 @@ VIN,5,1,0,1,1,0,0,3,0,0,0,0,0,0,2,0,82
 \end{onlyenv}
 \end{frame}
 
-\begin{frame}[label={sec:org848bf2c}]{Classification}
+\begin{frame}[label={sec:orgace5517}]{Classification}
 \begin{columns}
 \begin{column}{0.55\columnwidth}
 \begin{itemize}
@@ -440,7 +447,5 @@ VIN,5,1,0,1,1,0,0,3,0,0,0,0,0,0,2,0,82
 \end{center}
 \end{column}
 \end{columns}
-\end{frame}
-\begin{frame}[label={sec:org8b00dee}]{}
 \end{frame}
 \end{document}

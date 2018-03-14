@@ -190,6 +190,14 @@
 #+ATTR_LATEX: :width \linewidth
 [[file:./figures/OSO_V4.png]]
 
+** Zoom
+#+BEGIN_EXPORT latex
+\begin{center}
+  \only<1>{\includegraphics[width=0.8\linewidth]{figures/ensg_ortho.png}}
+  \only<2>{\includegraphics[width=0.8\linewidth]{figures/ensg_oso_10m.png}}
+  \only<3>{\includegraphics[width=0.8\linewidth]{figures/ensg_oso_20m.png}}
+\end{center}
+#+END_EXPORT
 ** Précision de classification
 :PROPERTIES:
 :BEAMER_opt: fragile
@@ -234,7 +242,6 @@ VIN,5,1,0,1,1,0,0,3,0,0,0,0,0,0,2,0,82
 }
 \end{center}
 #+END_EXPORT
-
 * La chaîne de traitements                                           :export:
 ** Étapes de traitements
 
