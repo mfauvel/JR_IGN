@@ -1,0 +1,414 @@
+#+TITLE: Occupation des sols à l'aide de séries temporelles d'images satellitaires
+#+SUBTITLE: 27\iemes\nbsp Journées de la Recherche IGN
+#+DATE: 23 mars 2018
+
+#+LANGUAGE: fr
+#+OPTIONS: toc:t H:2 tags:nil
+
+#+LaTeX_CLASS_OPTIONS: [pressentation,10pt,aspectratio=1610, xcolor=table]
+#+BEAMER_THEME: metropolis
+#+BEAMER_COLOR_THEME: owl [snowy]
+#+BEAMER_HEADER: \metroset{progressbar=frametitle,numbering=fraction,titleformat=smallcaps,block=fill,sectionpage=simple,subsectionpage=simple}
+
+#+BEAMER_HEADER: \setbeamercovered{again covered={\opaqueness<1->{25}}}
+#+BEAMER_HEADER: \author[Mathieu Fauvel]{Jordi Inglada$^{1}$, Arthur Vincent$^{1}$, Vincent Thieirion$^{1}$ et Mathieu Fauvel$^{1,2}$}
+#+BEAMER_HEADER: \institute[INRA]{$^{1}$ CESBIO, Université de Toulouse, CNES, CNRS, IRD, UPS, Toulouse, France\\ $^{2}$ DYNAFOR, Université de Toulouse, INRA, Castanet-Tolosan, France}
+
+#+BEAMER_HEADER: \setbeamertemplate{footline}
+#+BEAMER_HEADER: {%
+#+BEAMER_HEADER:   \leavevmode%
+#+BEAMER_HEADER:   \hbox{\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fill,rightskip=.3cm]{author in head/foot}%
+#+BEAMER_HEADER:       \usebeamerfont{author in head/foot}\insertshortauthor: \insertshorttitle
+#+BEAMER_HEADER:        \hfill%
+#+BEAMER_HEADER:     \end{beamercolorbox}%
+#+BEAMER_HEADER:     \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+#+BEAMER_HEADER:       \usebeamerfont{title in head/foot}\hfill\insertframenumber/\inserttotalframenumber\hspace{2em}
+#+BEAMER_HEADER:     \end{beamercolorbox}}%
+#+BEAMER_HEADER:   \vskip0pt%
+#+BEAMER_HEADER: }
+
+#+BEAMER_HEADER: \setbeamertemplate{blocks}[rounded][shadow=false,] 
+#+BEAMER_HEADER: \setbeamersize{text margin left  = 0.5cm}
+#+BEAMER_HEADER: \setbeamersize{text margin right = 0.5cm}
+#+BEAMER_HEADER: \setbeamertemplate{itemize item}[square]
+#+BEAMER_HEADER: \setbeamertemplate{itemize subitem}[triangle]
+#+BEAMER_HEADER: \setbeamertemplate{itemize subsubitem}{$\star$}
+#+BEAMER_HEADER: \setbeamertemplate{navigation symbols}{}
+
+#+LATEX_HEADER: \usepackage[french]{babel}\usepackage{etex}\usepackage{minted}\usemintedstyle{emacs}\usepackage{pifont}\usepackage{booktabs}\usepackage{pgfplotstable}
+#+LATEX_HEADER: \usepackage{tikz}\usepackage{amsmath}\usepackage{pgfplots}\usepackage{etex}\usepackage{mathspec}\usepackage{smartdiagram}\usetikzlibrary{arrows,shapes,positioning,mindmap,decorations.pathreplacing,backgrounds,overlay-beamer-styles,calc,3d,fit}
+#+LATEX_HEADER: \defaultfontfeatures{Ligatures=TeX} \usepgfplotslibrary{statistics,ternary,dateplot}\usepackage{appendixnumberbeamer}\usepackage{animate}\pgfplotsset{/pgf/number format/assume math mode=true}
+#+LATEX_HEADER: \setmathsfont(Digits,Latin,Greek)[BoldFont=Fira Sans Bold]{Fira Sans Light} \usepackage{pgfplotstable}\usepackage{siunitx}
+
+
+#+LATEX_HEADER:% Define the layers to draw the diagram
+#+LATEX_HEADER:\pgfdeclarelayer{background}
+#+LATEX_HEADER:\pgfdeclarelayer{foreground}
+#+LATEX_HEADER:\pgfsetlayers{background,main,foreground}
+#+LATEX_HEADER: 
+#+LATEX_HEADER:% Define block styles  
+#+LATEX_HEADER:\tikzstyle{bblock}=[draw, text width=8.0em, text centered,
+#+LATEX_HEADER:  minimum height=1.8em,drop shadow]
+#+LATEX_HEADER:\tikzstyle{datanode} = [bblock, fill=blue!20, text width=8em, minimum width=8em,
+#+LATEX_HEADER:  minimum height=4em, drop shadow]
+#+LATEX_HEADER:\tikzstyle{process} = [bblock, fill=green!20, text width=8em, minimum width=8em,
+#+LATEX_HEADER:  minimum height=4em, rounded corners, drop shadow]
+#+LATEX_HEADER:\tikzstyle{texto} = [above, text width=10em, text centered]
+#+LATEX_HEADER:\tikzstyle{linepart} = [draw, thick, color=black!50, -latex', dashed]
+#+LATEX_HEADER:\tikzstyle{line} = [draw, thick, color=black!50, -latex']
+#+LATEX_HEADER:\tikzstyle{ur}=[draw, text centered, minimum height=0.01em]
+#+LATEX_HEADER:\tikzstyle{datanode} = [bblock, fill=blue!20, text width=8em, minimum width=8em,
+#+LATEX_HEADER:  minimum height=4em, drop shadow]
+#+LATEX_HEADER:\tikzstyle{classnode} = [bblock, fill=orange!20, text width=8em, minimum width=8em, minimum height=4em, drop shadow]
+#+LATEX_HEADER: 
+#+LATEX_HEADER:% Define distances for bordering
+#+LATEX_HEADER:\newcommand{\blockdist}{1.3}
+#+LATEX_HEADER:\newcommand{\edgedist}{1.5}
+#+LATEX_HEADER:
+#+LATEX_HEADER:\newcommand{\process}[3]{node (#1) [process]
+#+LATEX_HEADER:  {\textbf{#2}\\{\scriptsize\textit{#3}}}}
+#+LATEX_HEADER:
+#+LATEX_HEADER:\newcommand{\datanode}[2]{node (#1) [datanode] {\textbf{#2}}}
+#+LATEX_HEADER:\newcommand{\bdnode}[2]{node (#1) [bdnode] {\textbf{#2}}}
+#+LATEX_HEADER:\newcommand{\classnode}[2]{node (#1) [classnode] {#2}}
+#+LATEX_HEADER:
+#+LATEX_HEADER:% Draw background
+#+LATEX_HEADER:\newcommand{\background}[5]{%
+#+LATEX_HEADER:  \begin{pgfonlayer}{background}
+#+LATEX_HEADER:    % Left-top corner of the background rectangle
+#+LATEX_HEADER:    \path (#1.west |- #2.north)+(-0.5,0.5) node (a1) {};
+#+LATEX_HEADER:    % Right-bottom corner of the background rectanle
+#+LATEX_HEADER:    \path (#3.east |- #4.south)+(+0.5,-0.25) node (a2) {};
+#+LATEX_HEADER:    % Draw the background
+#+LATEX_HEADER:    \path[fill=yellow!20,rounded corners, draw=black!50, dashed]
+#+LATEX_HEADER:      (a1) rectangle (a2);
+#+LATEX_HEADER:    \path (a1.east |- a1.south)+(1.25,-0.3) node (u1)[texto]
+#+LATEX_HEADER:      {\scriptsize\textsc{#5}};
+#+LATEX_HEADER:  \end{pgfonlayer}}
+
+
+* Occupation et usage des sols par télédétection                     :export:
+** Occupation et usage des sols
+*** Qu'est ce que c'est ?
+- Couverture (bio)-physique des terres émergées
+- Utilisation faites par l'homme
+*** Pourquoi ?
+- Connaître l'état et les tendances d'évolution passées/futures des territoires/paysages
+- Entrée de nombreux travaux de recherche
+*** Comment faire ?
+- Manuelle,
+- Automatique
+*** Enjeux
+- Qualité
+- Mise à jours fréquentes & fraîcheur
+** OCS & télédétection
+*** Text                                                            :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+- Classification supervisée des pixels à partir de descripteurs /spatio-spectro-temporel/
+  $$ f:\mathbf{x} \mapsto z $$
+- Série temporelle /Sentinel-2/
+  + Des dizaines de dates
+  + Des milliards de pixels
+- <2> *Mais*
+  + Bruit dans la donnée (nuages & ombres)
+  + Adéquation STIS & BD
+  + Volume des STIS
+*** Image                                                           :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.45
+:END:
+#+BEGIN_EXPORT latex
+\animategraphics[controls,loop,width=\linewidth]{1}{figures/color_}{1}{17}
+#+END_EXPORT
+** CES OSO
+#+ATTR_LATEX: :width 0.8\linewidth
+[[./figures/imagesat_oso.jpg]]
+
+- Centre d'Expertise Scientifique "CES Occupation des SOls"
+- Caractéristiques, spécifications
+  + Production de cartes à échelle nationale:
+    - Nomenclature de *15 à 20 classes*,
+    - Résolution spatiale entre *10 m* et 20 m
+    - Mise à jour *annuelle*.
+  + Données en entrée :
+    - STIS (de type Sentinel-2), mais aussi SPOT6, voire Pléiades
+    - Des données auxiliaires de référence pour entraînement et validation
+
+* Le produit OSO actuel                                              :export:
+** Caractéristiques
+- Une cartographie annuelle gratuite et rapidement disponible,
+  + Pour la période \og Janvier-Décembre\fg
+  + 17 Classes
+  + Au format raster ou vecteur (par département)
+  + http://osr-cesbio.ups-tlse.fr/~oso/
+- Une chaîne de traitements /open-source/:
+  #+BEGIN_CENTER
+   http://osr-cesbio.ups-tlse.fr/~oso/posts/2016-02-02-iota2/ 
+  #+END_CENTER
+- Equipe: *CESBIO*
+  + CIRAD, COSTEL, CNRM, DYNAFOR, ICUBE, ISPA, MATIS ...
+- /Operational High Resolution Land Cover Map Production at the Country
+  Scale Using Satellite Image  Time Series/.  \(\textsc{Remote Sens.}\)
+  2017, 9, 95. http://dx.doi.org/10.3390/rs9010095
+
+** Nomenclature actuelle
+****                                                               :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+\small
+- Surface artificielles
+  - CUF :: Continuous urban fabric (CLC 111)
+  - DUF :: Discontinuous urban fabric (CLC 112)
+  - ICU :: Industrial or commercial units (CLC 121)
+  - RSF :: Road surfaces (BD Topo)
+- Surface agricoles
+  - ASC :: Annual summer crops (RPG)
+  - AWC :: Annual winter crops (RPG)
+  - IGL :: Intensive grassland (RPG)
+  - ORC :: Orchards (RPG)
+  - VIN :: Vineyards (RPG)
+****                                                               :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+\small
+- Forêts et milieux semi-naturels
+  - BLF :: Broad-leaved forest (BD Topo)
+  - COF :: Coniferous forest (BD Topo)
+  - NGL :: Natural grasslands (CLC 321)
+  - WOM :: Woody moorlands (BD Topo)
+- Espaces ouverts avec peu ou pas de végétation
+  - BDS :: Beaches, dunes and sand plains (CLC 331)
+  - BRO :: Bare rock (CLC 332)
+  - GPS :: Glaciers and perpetual snow (Randolph)
+  - WAT :: Water bodies (CLC 523 and BD Topo)
+
+** OCS France pour 2016
+#+ATTR_LATEX: :width \linewidth
+[[file:./figures/OSO_V4.png]]
+
+** Précision de classification
+:PROPERTIES:
+:BEAMER_opt: fragile
+:END:
+
+#+BEGIN_EXPORT latex
+\scriptsize
+\pgfplotstableset{
+    color cells/.style={
+      col sep=comma,
+      precision=1, fixed zerofill,
+      string type,
+      postproc cell content/.code={%
+        \pgfkeysalso{@cell content=\rule{0cm}{2.4ex}\cellcolor{black!##1}\pgfmathtruncatemacro\number{##1}\ifnum\number>50\color{white}\fi##1}%
+      },
+      columns/x/.style={
+        column name={},
+        postproc cell content/.code={}
+      }
+    }
+}
+\begin{center}
+\pgfplotstabletypeset[color cells]{
+x,ASC,AWC,BLF,COF,NGL,WOM,CUF,DUF,ICU,RSF,BRO,BDS,WAT,GPS,IGL,ORC,VIN
+ASC,94,1,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0
+AWC,0,98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+BLF,0,0,89,5,2,1,0,0,0,0,0,0,0,0,1,0,0
+COF,0,0,3,92,1,1,0,0,0,0,0,0,0,0,0,0,0
+NGL,0,0,2,5,64,8,0,1,0,0,2,0,0,0,13,0,0
+WOM,0,0,5,9,29,41,0,1,0,0,2,0,2,0,5,0,0
+CUF,0,0,0,0,0,0,24,46,26,0,0,0,0,0,0,0,0
+DUF,0,0,0,1,1,0,0,82,7,0,0,0,0,0,2,0,0
+ICU,0,0,0,0,0,0,0,34,58,0,0,0,0,0,1,0,0
+RSF,0,0,0,0,0,0,0,19,71,1,0,0,0,0,1,0,0
+BRO,0,0,0,0,6,1,0,0,0,0,86,0,0,3,0,0,0
+BDS,1,0,2,1,3,5,0,9,8,0,1,43,21,0,1,0,0
+WAT,0,0,0,0,0,0,0,0,0,0,0,0,98,0,0,0,0
+GPS,0,0,0,0,0,0,0,0,0,0,14,0,0,85,0,0,0
+IGL,0,0,1,0,4,0,0,0,0,0,0,0,0,0,90,0,0
+ORC,3,2,9,2,7,6,0,8,0,0,0,0,0,0,21,29,7
+VIN,5,1,0,1,1,0,0,3,0,0,0,0,0,0,2,0,82
+}
+\end{center}
+#+END_EXPORT
+
+* La chaîne de traitements                                           :export:
+** Étapes de traitements
+
+#+BEGIN_EXPORT latex
+  \begin{center}
+    \begin{tikzpicture}[font=\scriptsize, transform shape,scale=0.72]
+      \path \datanode{inref}{Reference Data};
+      \path (inref.east)+(2.5,0.0) \process{sample}{Sample Selection}{sample\_ratio};
+      \path (sample.east)+(2.5,0.0) \datanode{tsamples}{Training Samples};
+      \path (sample.east)+(2.5,-1.9) \datanode{vsamples}{Validation Samples};
+      \path (inref.south)+(0.0,-2.25) \datanode{valmasks}{Validity Masks};
+      \path (valmasks.east)+(2.5,-1.0) \process{interpol}{Linear Interpolation}{t\_0, t\_end, sampling\_period};
+      \path (valmasks.south)+(0.0,-1.25) \datanode{inimages}{L2A Input Images};
+      \path (interpol.east)+(2.5,0.0) \process{fex}{Feature Extraction}{TOC, NDVI, NDWI, Brightness};
+      \path (fex.east)+(3.5,0.0) \process{train}{Training}{nb\_trees, max\_depth, min\_samples};
+      \path (train.east)+(2.5,0.0) \datanode{model}{Classification Model};
+      \path (interpol.south)+(0.0,-2.5) \process{classif}{Classification}{};
+      \path (classif.east)+(2.5,0.0) \datanode{map}{LC Map};
+      \path (classif.west)+(-2.5,0.0) \datanode{cropmask}{ROI Mask};
+      \path (map.east)+(2.5,0.0) \process{valid}{Validation}{};
+      \path (valid.east)+(2.5,0.0) \datanode{stats}{OA, FScore};
+
+
+      %% arrows
+      \path [line] (inref.east) -- node [left] {} (sample);
+      \path [line] (sample.east) -- node [left, midway] {} (tsamples);
+      \path [line] (sample.east) -- +(0.25,-1.5) -- node [left, midway] {} (vsamples);
+      \path [line] (tsamples.east) -- +(3.5,0.0) -- node [above, midway] {} (train);
+      \path [line] (vsamples.east) -- +(0.75, 0.0) -- +(0.75, -3.25) -- node [above, midway] {} (valid);
+      \path [line] (valmasks.east) -- +(0.25,0.0)-- +(0.25,-0.75)-- node [left] {} (interpol);
+      \path [line] (interpol.east) -- node [left] {} (fex);
+      \path [line] (fex.east) -- node [left] {} (train);
+      \path [line] (train.east) -- node [left] {} (model);
+      \path [line] (inimages.east) -- +(0.25,0.00) -- +(0.25,0.75) -- node [left, midway] {} (interpol);
+      \path [line] (fex.south) -- +(0.0,-0.75) -- +(-6.25,-0.75) -- +(-6.25,-2.25) -- node [right, midway] {} (classif);
+      \path [line] (model.south) -- +(0.0, -1.1) -- +(-12.5, -1.1) -- node [above, midway] {} (classif);
+      \path [line] (cropmask.east) -- node [left] {} (classif);
+      \path [line] (classif.east) -- node [left] {} (map);
+      \path [line] (map.east) -- node [left] {} (valid);
+      \path [line] (valid.east) -- node [left] {} (stats);
+
+      % background
+      \background{sample}{tsamples}{fex}{fex}{Data Preparation}
+      \background{train}{train}{model}{model}{Supervised Learning}
+      \background{classif}{classif}{stats}{map}{Map Production}
+    \end{tikzpicture}
+\end{center}
+#+END_EXPORT
+** Extraction des données d'entraînement/validation
+*** text                                                        :B_onlyenv:
+:PROPERTIES:
+:BEAMER_act: <1>
+:BEAMER_env: onlyenv
+:END:
+#+BEGIN_EXPORT latex
+\begin{center}
+  \begin{tikzpicture}[font=\scriptsize, scale=0.52, transform shape]
+    \path \process{selclass}{Class Selection}{for each source};
+    \path (selclass.east)+(2.5,4.5) \datanode{bdtopo}{BD-Topo};
+    \path (bdtopo.south)+(0.0,-3.5) \classnode{bdtopoclass}{Broad-leaved forests\\ Coniferous forests\\ Buildings\\ Roads\\ Water};
+    \path (bdtopo.east)+(2.5,0.0) \datanode{clc}{CLC};
+    \path (clc.south)+(0.0,-3.5) \classnode{clcclass}{Sand, dunes\\ Bare rocks\\ Natural grasslands\\ Oceans and sea\\ Continuous urban\\ Discontinuous urban\\ Industrial and commercial\\ Woody moorlands\\ Water};
+    \path (clc.east)+(2.5,0.0) \datanode{rpg}{RPG};
+    \path (rpg.south)+(0.0,-3.5) \classnode{rpgclass}{Corn\\Sunflower\\Wheat\\Barley\\Rapeseed\\Cultivated grasslands\\Vineyards\\Olive trees\\Ochards};
+    \path (rpg.east)+(2.5,0.0) \datanode{randolph}{Randolph DB};
+    \path (randolph.south)+(0.0,-3.5) \classnode{randolphclass}{Glaciers};
+
+    \path (selclass.south)+(0.0,-4.0) \process{checkempty}{Check empty geometries}{};
+    \path (checkempty.east)+(2.5,0.0) \process{correctinval}{Correct invalid geometries}{};
+    \path (correctinval.east)+(2.5,0.0) \process{removedouble}{Remove double geometries}{};
+    \path (removedouble.east)+(2.5,0.0) \process{removeinc}{Remove incorrect geometries}{};
+    \path (removeinc.east)+(2.5,0.0) \process{erode}{Negative buffer\\ Remove geometries $<$ 1 pixel}{};
+
+
+    \path (erode.east)+(2.75,+3) \datanode{bdtopocorr}{BD-Topo selection};
+    \path (bdtopocorr.south)+(0.0,-1.0) \datanode{clccorr}{CLC selection};
+    \path (clccorr.south)+(0.0,-1.0) \datanode{rpgcorr}{RPG selection};
+    \path (rpgcorr.south)+(0,-1.0) \datanode{randolphcorr}{Randolph DB selection};
+
+    \path (clccorr.east)+(3.25,0.0) \process{fusion}{Fusion by difference}{};
+    \path (fusion.south)+(0.0,-2.0) \process{removesmall}{Remove geometries $<$ 1 pixel}{};
+
+    \path (removesmall.south)+(0.0,-2.0) \datanode{result}{Final Reference Data};
+
+    \path [line] (2.0, 2.0) -- +(-1.0, 0.0) -- (selclass.north);
+    \path [line] (selclass.south) -- node [above] {} (checkempty);
+    \path [line] (bdtopo.south) -- node [above] {} (bdtopoclass);
+    \path [line] (clc.south) -- node [above] {} (clcclass);
+    \path [line] (rpg.south) -- node [above] {} (rpgclass);
+    \path [line] (randolph.south) -- node [above] {} (randolphclass);
+
+    \path [line] (checkempty.east) -- node [left] {} (correctinval);
+    \path [line] (correctinval.east) -- node [left] {} (removedouble);
+    \path [line] (removedouble.east) -- node [left] {} (removeinc);
+    \path [line] (removeinc.east) -- node [left] {} (erode);
+
+    \path [line] (erode.east) -- node [above, midway] {} (bdtopocorr.west);
+    \path [line] (erode.east) -- node [above, midway] {} (clccorr.west);
+    \path [line] (erode.east) -- node [above, midway] {} (rpgcorr.west);
+    \path [line] (erode.east) -- node [above, midway] {} (randolphcorr.west);
+
+    \path [line] (bdtopocorr.east) -- node [above] {} (fusion.west);
+    \path [line] (clccorr.east) -- node [above] {} (fusion.west);
+    \path [line] (rpgcorr.east) -- node [above] {} (fusion.west);
+    \path [line] (randolphcorr.east) -- node [above] {} (fusion.west);
+
+    \path [line] (fusion.south) -- node [above] {} (removesmall.north);
+    \path [line] (removesmall.south) -- node [above] {} (result.north);
+
+    \background{bdtopo}{bdtopo}{randolphclass}{clcclass}{Reference Data}
+
+  \end{tikzpicture}
+\end{center}
+#+END_EXPORT
+*** image 1                                                     :B_onlyenv:
+:PROPERTIES:
+:BEAMER_act: <2>
+:BEAMER_env: onlyenv
+:END:
+#+BEGIN_CENTER
+#+ATTR_LATEX: :width 0.55\linewidth
+[[file:./figures/BD_ORTHO_CLC_Bati_BDTOPO_All.jpeg]]
+#+END_CENTER
+
+*** image 2                                                     :B_onlyenv:
+:PROPERTIES:
+:BEAMER_act: <3>
+:BEAMER_env: onlyenv
+:END:
+#+BEGIN_CENTER
+#+ATTR_LATEX: :width 0.55\linewidth
+[[file:./figures/BD_ORTHO_ProcessCesbio_BDTOPO_All.jpeg]]
+#+END_CENTER
+
+** Ré-échantillonage temporel
+*** Tracks                                                      :B_onlyenv:
+:PROPERTIES:
+:BEAMER_env: onlyenv
+:BEAMER_act: <1>
+:END:
+#+BEGIN_CENTER
+#+ATTR_LATEX: :width 0.725\linewidth
+[[file:./figures/S2_tracks.png]]
+#+END_CENTER
+*** Clouds :B_onlyenv:
+:PROPERTIES:
+:BEAMER_act: <2>
+:BEAMER_env: onlyenv
+:END:
+
+** Classification
+***                                           :B_block:BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.55
+:END:
+- Random Forest 
+  + Complexité faible
+  + Robuste au bruit dans les labels
+  + Paramétrisation simple
+- Adaptation de domaine
+- Stratification en zones écoclimatiques
+*** Stratification spatiale                                         :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.45
+:END:
+#+ATTR_LATEX: :width \linewidth
+[[file:./figures/climat.png]]
+* Conclusions
+
+* Compilation                                                      :noexport:
+Export sources in tex for beamer: C-c C-e l b
+#+BEGIN_SRC sh :session
+latexmk -xelatex -shell-escape jr_ign_fauvel.tex
+#+END_SRC
+
+#+RESULTS:
+
