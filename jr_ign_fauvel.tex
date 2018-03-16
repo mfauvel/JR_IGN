@@ -1,4 +1,4 @@
-% Created 2018-03-16 Fri 10:40
+% Created 2018-03-16 Fri 10:51
 % Intended LaTeX compiler: pdflatex
 \documentclass[pressentation,10pt,aspectratio=1610, xcolor=table]{beamer}
 \usepackage[utf8]{inputenc}
@@ -65,7 +65,7 @@ minimum height=4em, drop shadow]
 \subtitle{27\iemes~ Journées de la Recherche IGN}
 \metroset{progressbar=frametitle,numbering=fraction,titleformat=smallcaps,block=fill,sectionpage=simple,subsectionpage=simple}
 \setbeamercovered{again covered={\opaqueness<1->{25}}}
-\author[Mathieu Fauvel]{Jordi Inglada$^{1}$, Arthur Vincent$^{1}$, Vincent Thieirion$^{1}$ et Mathieu Fauvel$^{1,2}$}
+\author[Mathieu Fauvel]{Jordi Inglada$^{1}$, Arthur Vincent$^{1}$, Vincent Thierion$^{1}$ et Mathieu Fauvel$^{1,2}$}
 \institute[INRA]{$^{1}$ CESBIO, Université de Toulouse, CNES, CNRS, IRD, UPS, Toulouse, France\\ $^{2}$ DYNAFOR, Université de Toulouse, INRA, Castanet-Tolosan, France}
 \setbeamertemplate{footline}
 {%
@@ -94,8 +94,8 @@ minimum height=4em, drop shadow]
 \end{frame}
 
 \section{Occupation et usage des sols par télédétection}
-\label{sec:orgcd43f11}
-\begin{frame}[label={sec:orgf81dc27}]{Occupation et usage des sols}
+\label{sec:org2b1ea44}
+\begin{frame}[label={sec:orga4f9fc8}]{Occupation et usage des sols}
 \begin{block}{Qu'est ce que c'est ?}
 \begin{itemize}
 \item Couverture (bio)-physique des terres émergées
@@ -121,7 +121,7 @@ minimum height=4em, drop shadow]
 \end{itemize}
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:orga0111bf}]{OCS \& télédétection}
+\begin{frame}[label={sec:org2576c6c}]{OCS \& télédétection}
 \begin{columns}
 \begin{column}{0.5\columnwidth}
 \begin{itemize}
@@ -145,7 +145,7 @@ $$ f:\mathbf{x} \mapsto z $$
 \end{column}
 \end{columns}
 \end{frame}
-\begin{frame}[label={sec:orga3ff765}]{CES OSO}
+\begin{frame}[label={sec:org3dd7055}]{CES OSO}
 \begin{center}
 \includegraphics[width=0.8\linewidth]{./figures/imagesat_oso.jpg}
 \end{center}
@@ -170,8 +170,8 @@ $$ f:\mathbf{x} \mapsto z $$
 \end{frame}
 
 \section{Le produit OSO actuel}
-\label{sec:org42018af}
-\begin{frame}[label={sec:org6a0b18f}]{Caractéristiques}
+\label{sec:org479d0d1}
+\begin{frame}[label={sec:org8188c30}]{Caractéristiques}
 \begin{itemize}
 \item Une cartographie annuelle gratuite et rapidement disponible,
 \begin{itemize}
@@ -195,7 +195,7 @@ Scale Using Satellite Image  Time Series}.  \(\textsc{Remote Sens.}\)
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org568f3d4}]{Nomenclature actuelle}
+\begin{frame}[label={sec:orgac06745}]{Nomenclature actuelle}
 \begin{columns}
 \begin{column}{0.5\columnwidth}
 \small
@@ -239,20 +239,20 @@ Scale Using Satellite Image  Time Series}.  \(\textsc{Remote Sens.}\)
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:org450024d}]{OCS France pour 2016}
+\begin{frame}[label={sec:orgf84f892}]{OCS France pour 2016}
 \begin{center}
 \includegraphics[width=\linewidth]{./figures/OSO_V4.png}
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:orgc130c56}]{Zoom}
+\begin{frame}[label={sec:orgae6bb7e}]{Zoom}
 \begin{center}
   \only<1>{\includegraphics[width=0.8\linewidth]{figures/ensg_ortho.png}}
   \only<2>{\includegraphics[width=0.8\linewidth]{figures/ensg_oso_10m.png}}
   \only<3>{\includegraphics[width=0.8\linewidth]{figures/ensg_oso_20m.png}}
 \end{center}
 \end{frame}
-\begin{frame}[fragile,label={sec:orgeec9a29}]{Précision de classification}
+\begin{frame}[fragile,label={sec:orga51aa54}]{Précision de classification}
 \scriptsize
 \pgfplotstableset{
     color cells/.style={
@@ -292,8 +292,8 @@ Scale Using Satellite Image  Time Series}.  \(\textsc{Remote Sens.}\)
 \end{center}
 \end{frame}
 \section{La chaîne de traitements}
-\label{sec:orgf17fee9}
-\begin{frame}[label={sec:org532e1ea}]{Étapes de traitements}
+\label{sec:org1af30fb}
+\begin{frame}[label={sec:orgec01cb4}]{Étapes de traitements}
   \begin{center}
     \begin{tikzpicture}[font=\scriptsize, transform shape,scale=0.72]
       \path \datanode{inref}{Reference Data};
@@ -338,7 +338,7 @@ Scale Using Satellite Image  Time Series}.  \(\textsc{Remote Sens.}\)
     \end{tikzpicture}
 \end{center}
 \end{frame}
-\begin{frame}[label={sec:org2280652}]{Extraction des données d'entraînement/validation}
+\begin{frame}[label={sec:org6f44a02}]{Extraction des données d'entraînement/validation}
 \begin{onlyenv}<1>
 \begin{center}
   \begin{tikzpicture}[font=\scriptsize, scale=0.52, transform shape]
@@ -416,7 +416,7 @@ Scale Using Satellite Image  Time Series}.  \(\textsc{Remote Sens.}\)
 \end{onlyenv}
 \end{frame}
 
-\begin{frame}[label={sec:orgdd642c9}]{Ré-échantillonage temporel}
+\begin{frame}[label={sec:org3a38b4e}]{Ré-échantillonage temporel}
 \begin{onlyenv}<1>
 \begin{center}
 \begin{center}
@@ -446,7 +446,7 @@ Scale Using Satellite Image  Time Series}.  \(\textsc{Remote Sens.}\)
 \end{center}
 \end{onlyenv}
 \end{frame}
-\begin{frame}[label={sec:orgc1fae49}]{Classification}
+\begin{frame}[label={sec:org75c13a7}]{Classification}
 \begin{columns}
 \begin{column}{0.55\columnwidth}
 \begin{itemize}
@@ -468,8 +468,8 @@ Scale Using Satellite Image  Time Series}.  \(\textsc{Remote Sens.}\)
 \end{columns}
 \end{frame}
 \section{Conclusions et perspectives}
-\label{sec:orgadefc11}
-\begin{frame}[label={sec:orgabe0391}]{Conclusions}
+\label{sec:org17450fe}
+\begin{frame}[label={sec:orgd7d7671}]{Conclusions}
 \begin{itemize}
 \item Produits disponibles : 
 \begin{itemize}
@@ -481,7 +481,7 @@ Scale Using Satellite Image  Time Series}.  \(\textsc{Remote Sens.}\)
 \item Possibilité de re-traiter la donnée antérieure
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:orgcfdf474}]{Perspectives}
+\begin{frame}[label={sec:org04eaa0e}]{Perspectives}
 \begin{itemize}
 \item Classification
 \begin{itemize}

@@ -11,7 +11,7 @@
 #+BEAMER_HEADER: \metroset{progressbar=frametitle,numbering=fraction,titleformat=smallcaps,block=fill,sectionpage=simple,subsectionpage=simple}
 
 #+BEAMER_HEADER: \setbeamercovered{again covered={\opaqueness<1->{25}}}
-#+BEAMER_HEADER: \author[Mathieu Fauvel]{Jordi Inglada$^{1}$, Arthur Vincent$^{1}$, Vincent Thieirion$^{1}$ et Mathieu Fauvel$^{1,2}$}
+#+BEAMER_HEADER: \author[Mathieu Fauvel]{Jordi Inglada$^{1}$, Arthur Vincent$^{1}$, Vincent Thierion$^{1}$ et Mathieu Fauvel$^{1,2}$}
 #+BEAMER_HEADER: \institute[INRA]{$^{1}$ CESBIO, Université de Toulouse, CNES, CNRS, IRD, UPS, Toulouse, France\\ $^{2}$ DYNAFOR, Université de Toulouse, INRA, Castanet-Tolosan, France}
 
 #+BEAMER_HEADER: \setbeamertemplate{footline}
