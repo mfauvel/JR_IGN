@@ -152,6 +152,7 @@
 - /Operational High Resolution Land Cover Map Production at the Country
   Scale Using Satellite Image  Time Series/.  \(\textsc{Remote Sens.}\)
   2017, 9, 95. http://dx.doi.org/10.3390/rs9010095
+- Support: TOSCA-CNES
 
 ** Nomenclature actuelle
 ****                                                               :BMCOL:
@@ -221,24 +222,24 @@
 }
 \begin{center}
 \pgfplotstabletypeset[color cells]{
-x,ASC,AWC,BLF,COF,NGL,WOM,CUF,DUF,ICU,RSF,BRO,BDS,WAT,GPS,IGL,ORC,VIN
-ASC,94,1,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0
-AWC,0,98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-BLF,0,0,89,5,2,1,0,0,0,0,0,0,0,0,1,0,0
-COF,0,0,3,92,1,1,0,0,0,0,0,0,0,0,0,0,0
-NGL,0,0,2,5,64,8,0,1,0,0,2,0,0,0,13,0,0
-WOM,0,0,5,9,29,41,0,1,0,0,2,0,2,0,5,0,0
-CUF,0,0,0,0,0,0,24,46,26,0,0,0,0,0,0,0,0
-DUF,0,0,0,1,1,0,0,82,7,0,0,0,0,0,2,0,0
-ICU,0,0,0,0,0,0,0,34,58,0,0,0,0,0,1,0,0
-RSF,0,0,0,0,0,0,0,19,71,1,0,0,0,0,1,0,0
-BRO,0,0,0,0,6,1,0,0,0,0,86,0,0,3,0,0,0
-BDS,1,0,2,1,3,5,0,9,8,0,1,43,21,0,1,0,0
-WAT,0,0,0,0,0,0,0,0,0,0,0,0,98,0,0,0,0
-GPS,0,0,0,0,0,0,0,0,0,0,14,0,0,85,0,0,0
-IGL,0,0,1,0,4,0,0,0,0,0,0,0,0,0,90,0,0
-ORC,3,2,9,2,7,6,0,8,0,0,0,0,0,0,21,29,7
-VIN,5,1,0,1,1,0,0,3,0,0,0,0,0,0,2,0,82
+  x,ASC,AWC,BLF,COF,NGL,WOM,CUF,DUF,ICU,RSF,BRO,BDS,WAT,GPS,IGL,ORC,VIN
+  ASC,94,2,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0  
+  AWC,1,98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0  
+  BLF,0,0,90,5,2,1,0,0,0,0,0,0,0,0,1,0,0  
+  COF,0,0,3,93,2,1,0,1,0,0,0,0,0,0,0,0,0  
+  NGL,0,0,3,6,65,8,0,1,0,0,3,0,0,0,13,0,0 
+  WOM,1,0,6,9,29,41,0,2,0,0,3,0,3,0,5,0,0 
+  CUF,0,0,0,1,0,0,25,46,26,0,0,0,0,0,0,0,0
+  DUF,1,1,1,1,1,1,1,82,8,0,0,0,0,0,3,0,0  
+  ICU,0,1,1,1,1,1,1,34,59,0,0,0,0,0,1,0,0 
+  RSF,1,1,0,1,1,1,0,19,71,1,1,0,1,0,1,0,0 
+  BRO,0,0,0,1,7,2,0,0,0,0,86,0,0,3,0,0,0  
+  BDS,1,1,2,2,4,6,0,9,8,0,1,43,21,0,1,0,0 
+  WAT,0,0,0,0,0,0,0,0,0,0,0,0,99,0,0,0,0  
+  GPS,0,0,0,0,0,0,0,0,0,0,14,0,0,85,0,0,0 
+  IGL,0,1,2,1,5,1,0,0,0,0,0,0,0,0,90,0,0  
+  ORC,4,3,9,2,8,6,0,9,0,0,0,0,0,0,22,30,8 
+  VIN,6,1,0,2,2,1,0,4,0,0,0,0,0,0,2,0,82  
 }
 \end{center}
 #+END_EXPORT
@@ -386,12 +387,32 @@ VIN,5,1,0,1,1,0,0,3,0,0,0,0,0,0,2,0,82
 #+ATTR_LATEX: :width 0.725\linewidth
 [[file:./figures/S2_tracks.png]]
 #+END_CENTER
-*** Clouds :B_onlyenv:
+*** Clouds                                                      :B_onlyenv:
 :PROPERTIES:
-:BEAMER_act: <2>
+:BEAMER_act: <2->
 :BEAMER_env: onlyenv
 :END:
+#+BEGIN_EXPORT latex
+\begin{center}
+\only<2>{\includegraphics[width=0.52\linewidth]{figures/red_SENTINEL2A_20160428-104500-651_L2A_T31TEJ_D_V1-0_FRE_B2.jpg}}
 
+\only<3>{\includegraphics[width=0.52\linewidth]{figures/red_SENTINEL2A_20160518-104028-461_L2A_T31TEJ_D_V1-0_FRE_B2.jpg}}
+
+\only<4>{\includegraphics[width=0.52\linewidth]{figures/red_SENTINEL2A_20160528-104248-160_L2A_T31TEJ_D_V1-0_FRE_B2.jpg}}
+
+\only<5>{\includegraphics[width=0.52\linewidth]{figures/red_SENTINEL2A_20160607-104026-455_L2A_T31TEJ_D_V1-0_FRE_B2.jpg}}
+
+\only<6>{\includegraphics[width=0.52\linewidth]{figures/red_SENTINEL2A_20160627-104023-463_L2A_T31TEJ_D_V1-0_FRE_B2.jpg}}
+
+\only<7>{\includegraphics[width=0.52\linewidth]{figures/red_SENTINEL2A_20160707-104025-456_L2A_T31TEJ_D_V1-0_FRE_B2.jpg}}
+
+\only<8>{\includegraphics[width=0.52\linewidth]{figures/red_SENTINEL2A_20160717-104833-511_L2A_T31TEJ_D_V1-0_FRE_B2.jpg}}
+
+\only<9>{\includegraphics[width=0.52\linewidth]{figures/red_SENTINEL2A_20160806-104026-455_L2A_T31TEJ_D_V1-0_FRE_B2.jpg}}
+
+\only<10>{\includegraphics[width=0.52\linewidth]{figures/red_SENTINEL2A_20160816-104025-461_L2A_T31TEJ_D_V1-0_FRE_B2.jpg}}
+\end{center}
+#+END_EXPORT
 ** Classification
 ***                                           :B_block:BMCOL:
 :PROPERTIES:
@@ -409,8 +430,30 @@ VIN,5,1,0,1,1,0,0,3,0,0,0,0,0,0,2,0,82
 :END:
 #+ATTR_LATEX: :width \linewidth
 [[file:./figures/climat.png]]
-* Conclusions
-
+* Conclusions et perspectives                                        :export:
+** Conclusions
+- Produits disponibles : 
+  + 2016 avec Sentinel 2A
+  + 2009, 2010, 2011, et 2014 avec Landsat-8
+- Précision globale correcte, mais confusion entre les classes à la radiométrie proche
+- Gestion du volume des STIS
+- Possibilité de re-traiter la donnée antérieure
+** Perspectives
+- Classification
+  + Prise en compte du contexte : spatial, géométrie, ...
+  + Ajout de données hétérogènes (THRS, Radar)
+  + Adaptation de domaines
+- Nomenclature
+  + Plus de classes ? D'autres classes ?
+  + Occupation/Utilisation
+- Données de références
+**                                         
+:PROPERTIES:
+:BEAMER_opt: label=conclusion,standout
+:END:
+#+BEGIN_CENTER
+Merci de votre attention
+#+END_CENTER
 * Compilation                                                      :noexport:
 Export sources in tex for beamer: C-c C-e l b
 #+BEGIN_SRC sh :session
@@ -418,4 +461,39 @@ latexmk -xelatex -shell-escape jr_ign_fauvel.tex
 #+END_SRC
 
 #+RESULTS:
+
+* ToDo [66%]
+- [ ] Reprendre le slide "Occupation et usage des sols" -> mind map
+- [X] Reprendre la matrice de confusion
+- [X] RAjouter nuages
+** Matrice de confusion
+#+NAME: tab
+| 94.19 |  1.96 |  0.26 |  0.49 |  0.18 |  0.11 |  0.02 |  1.00 |  0.16 | 0.00 |  0.00 |  0.02 |  0.05 |  0.00 |  1.15 |  0.01 |  0.41 |
+|  0.66 | 98.16 |  0.06 |  0.08 |  0.11 |  0.04 |  0.00 |  0.28 |  0.05 | 0.00 |  0.00 |  0.01 |  0.02 |  0.00 |  0.49 |  0.01 |  0.06 |
+|  0.15 |  0.16 | 89.65 |  5.06 |  2.02 |  1.17 |  0.00 |  0.33 |  0.02 | 0.00 |  0.00 |  0.00 |  0.11 |  0.00 |  1.25 |  0.01 |  0.05 |
+|  0.24 |  0.08 |  3.20 | 92.54 |  1.79 |  1.08 |  0.00 |  0.51 |  0.06 | 0.00 |  0.07 |  0.01 |  0.02 |  0.00 |  0.34 |  0.00 |  0.06 |
+|  0.24 |  0.50 |  2.79 |  5.63 | 64.57 |  8.34 |  0.00 |  1.40 |  0.18 | 0.00 |  2.68 |  0.04 |  0.13 |  0.01 | 13.14 |  0.02 |  0.30 |
+|  0.54 |  0.45 |  5.68 |  9.45 | 29.47 | 41.03 |  0.00 |  1.84 |  0.29 | 0.00 |  2.58 |  0.14 |  2.91 |  0.00 |  5.34 |  0.03 |  0.26 |
+|  0.21 |  0.06 |  0.25 |  0.53 |  0.25 |  0.32 | 24.80 | 46.47 | 26.23 | 0.01 |  0.11 |  0.11 |  0.27 |  0.00 |  0.13 |  0.01 |  0.25 |
+|  0.63 |  0.76 |  0.87 |  1.44 |  1.27 |  0.85 |  0.84 | 82.07 |  7.76 | 0.00 |  0.18 |  0.05 |  0.11 |  0.00 |  2.76 |  0.04 |  0.40 |
+|  0.48 |  0.75 |  0.79 |  0.91 |  0.54 |  0.57 |  0.73 | 34.39 | 58.73 | 0.03 |  0.16 |  0.16 |  0.29 |  0.00 |  1.28 |  0.04 |  0.16 |
+|  0.51 |  0.93 |  0.50 |  0.67 |  0.93 |  0.82 |  0.33 | 19.31 | 71.28 | 1.34 |  0.88 |  0.45 |  0.56 |  0.00 |  1.33 |  0.03 |  0.13 |
+|  0.01 |  0.00 |  0.06 |  0.76 |  6.88 |  1.57 |  0.00 |  0.20 |  0.46 | 0.00 | 86.22 |  0.06 |  0.22 |  3.39 |  0.18 |  0.00 |  0.00 |
+|  1.23 |  0.80 |  2.19 |  1.50 |  3.88 |  5.89 |  0.03 |  9.10 |  8.25 | 0.02 |  1.04 | 43.05 | 21.38 |  0.00 |  1.14 |  0.13 |  0.39 |
+|  0.05 |  0.05 |  0.11 |  0.06 |  0.08 |  0.48 |  0.00 |  0.05 |  0.06 | 0.00 |  0.04 |  0.12 | 98.74 |  0.00 |  0.15 |  0.00 |  0.01 |
+|  0.00 |  0.00 |  0.00 |  0.00 |  0.42 |  0.00 |  0.00 |  0.00 |  0.00 | 0.00 | 14.47 |  0.01 |  0.05 | 85.05 |  0.00 |  0.00 |  0.00 |
+|  0.23 |  0.66 |  1.59 |  0.83 |  4.58 |  0.94 |  0.00 |  0.49 |  0.01 | 0.00 |  0.22 |  0.01 |  0.19 |  0.00 | 90.14 |  0.02 |  0.09 |
+|  3.83 |  2.85 |  9.40 |  2.04 |  7.65 |  6.06 |  0.01 |  8.72 |  0.25 | 0.00 |  0.00 |  0.08 |  0.17 |  0.00 | 21.74 | 29.60 |  7.58 |
+|  5.73 |  1.08 |  0.24 |  1.50 |  1.99 |  0.88 |  0.02 |  3.94 |  0.09 | 0.00 |  0.00 |  0.04 |  0.07 |  0.00 |  2.19 |  0.15 | 82.08 |
+
+#+BEGIN_SRC python :var tab=tab :results output table
+import scipy as sp
+
+table = sp.round_(sp.asarray(tab))
+
+sp.savetxt("/tmp/tab.csv", table, delimiter=",", fmt="%1.0f")
+#+END_SRC
+
+#+RESULTS:
+
 

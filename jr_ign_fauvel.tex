@@ -1,4 +1,4 @@
-% Created 2018-03-14 Wed 22:28
+% Created 2018-03-16 Fri 10:40
 % Intended LaTeX compiler: pdflatex
 \documentclass[pressentation,10pt,aspectratio=1610, xcolor=table]{beamer}
 \usepackage[utf8]{inputenc}
@@ -94,8 +94,8 @@ minimum height=4em, drop shadow]
 \end{frame}
 
 \section{Occupation et usage des sols par télédétection}
-\label{sec:org9394a74}
-\begin{frame}[label={sec:org3aabfae}]{Occupation et usage des sols}
+\label{sec:orgcd43f11}
+\begin{frame}[label={sec:orgf81dc27}]{Occupation et usage des sols}
 \begin{block}{Qu'est ce que c'est ?}
 \begin{itemize}
 \item Couverture (bio)-physique des terres émergées
@@ -121,7 +121,7 @@ minimum height=4em, drop shadow]
 \end{itemize}
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:orgabf36f0}]{OCS \& télédétection}
+\begin{frame}[label={sec:orga0111bf}]{OCS \& télédétection}
 \begin{columns}
 \begin{column}{0.5\columnwidth}
 \begin{itemize}
@@ -145,7 +145,7 @@ $$ f:\mathbf{x} \mapsto z $$
 \end{column}
 \end{columns}
 \end{frame}
-\begin{frame}[label={sec:org5cbf980}]{CES OSO}
+\begin{frame}[label={sec:orga3ff765}]{CES OSO}
 \begin{center}
 \includegraphics[width=0.8\linewidth]{./figures/imagesat_oso.jpg}
 \end{center}
@@ -170,8 +170,8 @@ $$ f:\mathbf{x} \mapsto z $$
 \end{frame}
 
 \section{Le produit OSO actuel}
-\label{sec:org09e2a6d}
-\begin{frame}[label={sec:org2337b5a}]{Caractéristiques}
+\label{sec:org42018af}
+\begin{frame}[label={sec:org6a0b18f}]{Caractéristiques}
 \begin{itemize}
 \item Une cartographie annuelle gratuite et rapidement disponible,
 \begin{itemize}
@@ -191,10 +191,11 @@ $$ f:\mathbf{x} \mapsto z $$
 \item \emph{Operational High Resolution Land Cover Map Production at the Country
 Scale Using Satellite Image  Time Series}.  \(\textsc{Remote Sens.}\)
 2017, 9, 95. \url{http://dx.doi.org/10.3390/rs9010095}
+\item Support: TOSCA-CNES
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org3a131ee}]{Nomenclature actuelle}
+\begin{frame}[label={sec:org568f3d4}]{Nomenclature actuelle}
 \begin{columns}
 \begin{column}{0.5\columnwidth}
 \small
@@ -238,20 +239,20 @@ Scale Using Satellite Image  Time Series}.  \(\textsc{Remote Sens.}\)
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:orgc58e00b}]{OCS France pour 2016}
+\begin{frame}[label={sec:org450024d}]{OCS France pour 2016}
 \begin{center}
 \includegraphics[width=\linewidth]{./figures/OSO_V4.png}
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:org0a681b7}]{Zoom}
+\begin{frame}[label={sec:orgc130c56}]{Zoom}
 \begin{center}
   \only<1>{\includegraphics[width=0.8\linewidth]{figures/ensg_ortho.png}}
   \only<2>{\includegraphics[width=0.8\linewidth]{figures/ensg_oso_10m.png}}
   \only<3>{\includegraphics[width=0.8\linewidth]{figures/ensg_oso_20m.png}}
 \end{center}
 \end{frame}
-\begin{frame}[fragile,label={sec:orgf322e1f}]{Précision de classification}
+\begin{frame}[fragile,label={sec:orgeec9a29}]{Précision de classification}
 \scriptsize
 \pgfplotstableset{
     color cells/.style={
@@ -269,30 +270,30 @@ Scale Using Satellite Image  Time Series}.  \(\textsc{Remote Sens.}\)
 }
 \begin{center}
 \pgfplotstabletypeset[color cells]{
-x,ASC,AWC,BLF,COF,NGL,WOM,CUF,DUF,ICU,RSF,BRO,BDS,WAT,GPS,IGL,ORC,VIN
-ASC,94,1,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0
-AWC,0,98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-BLF,0,0,89,5,2,1,0,0,0,0,0,0,0,0,1,0,0
-COF,0,0,3,92,1,1,0,0,0,0,0,0,0,0,0,0,0
-NGL,0,0,2,5,64,8,0,1,0,0,2,0,0,0,13,0,0
-WOM,0,0,5,9,29,41,0,1,0,0,2,0,2,0,5,0,0
-CUF,0,0,0,0,0,0,24,46,26,0,0,0,0,0,0,0,0
-DUF,0,0,0,1,1,0,0,82,7,0,0,0,0,0,2,0,0
-ICU,0,0,0,0,0,0,0,34,58,0,0,0,0,0,1,0,0
-RSF,0,0,0,0,0,0,0,19,71,1,0,0,0,0,1,0,0
-BRO,0,0,0,0,6,1,0,0,0,0,86,0,0,3,0,0,0
-BDS,1,0,2,1,3,5,0,9,8,0,1,43,21,0,1,0,0
-WAT,0,0,0,0,0,0,0,0,0,0,0,0,98,0,0,0,0
-GPS,0,0,0,0,0,0,0,0,0,0,14,0,0,85,0,0,0
-IGL,0,0,1,0,4,0,0,0,0,0,0,0,0,0,90,0,0
-ORC,3,2,9,2,7,6,0,8,0,0,0,0,0,0,21,29,7
-VIN,5,1,0,1,1,0,0,3,0,0,0,0,0,0,2,0,82
+  x,ASC,AWC,BLF,COF,NGL,WOM,CUF,DUF,ICU,RSF,BRO,BDS,WAT,GPS,IGL,ORC,VIN
+  ASC,94,2,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0  
+  AWC,1,98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0  
+  BLF,0,0,90,5,2,1,0,0,0,0,0,0,0,0,1,0,0  
+  COF,0,0,3,93,2,1,0,1,0,0,0,0,0,0,0,0,0  
+  NGL,0,0,3,6,65,8,0,1,0,0,3,0,0,0,13,0,0 
+  WOM,1,0,6,9,29,41,0,2,0,0,3,0,3,0,5,0,0 
+  CUF,0,0,0,1,0,0,25,46,26,0,0,0,0,0,0,0,0
+  DUF,1,1,1,1,1,1,1,82,8,0,0,0,0,0,3,0,0  
+  ICU,0,1,1,1,1,1,1,34,59,0,0,0,0,0,1,0,0 
+  RSF,1,1,0,1,1,1,0,19,71,1,1,0,1,0,1,0,0 
+  BRO,0,0,0,1,7,2,0,0,0,0,86,0,0,3,0,0,0  
+  BDS,1,1,2,2,4,6,0,9,8,0,1,43,21,0,1,0,0 
+  WAT,0,0,0,0,0,0,0,0,0,0,0,0,99,0,0,0,0  
+  GPS,0,0,0,0,0,0,0,0,0,0,14,0,0,85,0,0,0 
+  IGL,0,1,2,1,5,1,0,0,0,0,0,0,0,0,90,0,0  
+  ORC,4,3,9,2,8,6,0,9,0,0,0,0,0,0,22,30,8 
+  VIN,6,1,0,2,2,1,0,4,0,0,0,0,0,0,2,0,82  
 }
 \end{center}
 \end{frame}
 \section{La chaîne de traitements}
-\label{sec:orgcd98572}
-\begin{frame}[label={sec:orgd47816a}]{Étapes de traitements}
+\label{sec:orgf17fee9}
+\begin{frame}[label={sec:org532e1ea}]{Étapes de traitements}
   \begin{center}
     \begin{tikzpicture}[font=\scriptsize, transform shape,scale=0.72]
       \path \datanode{inref}{Reference Data};
@@ -337,7 +338,7 @@ VIN,5,1,0,1,1,0,0,3,0,0,0,0,0,0,2,0,82
     \end{tikzpicture}
 \end{center}
 \end{frame}
-\begin{frame}[label={sec:org52bf162}]{Extraction des données d'entraînement/validation}
+\begin{frame}[label={sec:org2280652}]{Extraction des données d'entraînement/validation}
 \begin{onlyenv}<1>
 \begin{center}
   \begin{tikzpicture}[font=\scriptsize, scale=0.52, transform shape]
@@ -415,7 +416,7 @@ VIN,5,1,0,1,1,0,0,3,0,0,0,0,0,0,2,0,82
 \end{onlyenv}
 \end{frame}
 
-\begin{frame}[label={sec:org3a5112b}]{Ré-échantillonage temporel}
+\begin{frame}[label={sec:orgdd642c9}]{Ré-échantillonage temporel}
 \begin{onlyenv}<1>
 \begin{center}
 \begin{center}
@@ -423,11 +424,29 @@ VIN,5,1,0,1,1,0,0,3,0,0,0,0,0,0,2,0,82
 \end{center}
 \end{center}
 \end{onlyenv}
-\begin{onlyenv}<2>
+\begin{onlyenv}<2->
+\begin{center}
+\only<2>{\includegraphics[width=0.52\linewidth]{figures/red_SENTINEL2A_20160428-104500-651_L2A_T31TEJ_D_V1-0_FRE_B2.jpg}}
+
+\only<3>{\includegraphics[width=0.52\linewidth]{figures/red_SENTINEL2A_20160518-104028-461_L2A_T31TEJ_D_V1-0_FRE_B2.jpg}}
+
+\only<4>{\includegraphics[width=0.52\linewidth]{figures/red_SENTINEL2A_20160528-104248-160_L2A_T31TEJ_D_V1-0_FRE_B2.jpg}}
+
+\only<5>{\includegraphics[width=0.52\linewidth]{figures/red_SENTINEL2A_20160607-104026-455_L2A_T31TEJ_D_V1-0_FRE_B2.jpg}}
+
+\only<6>{\includegraphics[width=0.52\linewidth]{figures/red_SENTINEL2A_20160627-104023-463_L2A_T31TEJ_D_V1-0_FRE_B2.jpg}}
+
+\only<7>{\includegraphics[width=0.52\linewidth]{figures/red_SENTINEL2A_20160707-104025-456_L2A_T31TEJ_D_V1-0_FRE_B2.jpg}}
+
+\only<8>{\includegraphics[width=0.52\linewidth]{figures/red_SENTINEL2A_20160717-104833-511_L2A_T31TEJ_D_V1-0_FRE_B2.jpg}}
+
+\only<9>{\includegraphics[width=0.52\linewidth]{figures/red_SENTINEL2A_20160806-104026-455_L2A_T31TEJ_D_V1-0_FRE_B2.jpg}}
+
+\only<10>{\includegraphics[width=0.52\linewidth]{figures/red_SENTINEL2A_20160816-104025-461_L2A_T31TEJ_D_V1-0_FRE_B2.jpg}}
+\end{center}
 \end{onlyenv}
 \end{frame}
-
-\begin{frame}[label={sec:orgace5517}]{Classification}
+\begin{frame}[label={sec:orgc1fae49}]{Classification}
 \begin{columns}
 \begin{column}{0.55\columnwidth}
 \begin{itemize}
@@ -447,5 +466,40 @@ VIN,5,1,0,1,1,0,0,3,0,0,0,0,0,0,2,0,82
 \end{center}
 \end{column}
 \end{columns}
+\end{frame}
+\section{Conclusions et perspectives}
+\label{sec:orgadefc11}
+\begin{frame}[label={sec:orgabe0391}]{Conclusions}
+\begin{itemize}
+\item Produits disponibles : 
+\begin{itemize}
+\item 2016 avec Sentinel 2A
+\item 2009, 2010, 2011, et 2014 avec Landsat-8
+\end{itemize}
+\item Précision globale correcte, mais confusion entre les classes à la radiométrie proche
+\item Gestion du volume des STIS
+\item Possibilité de re-traiter la donnée antérieure
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:orgcfdf474}]{Perspectives}
+\begin{itemize}
+\item Classification
+\begin{itemize}
+\item Prise en compte du contexte : spatial, géométrie, \ldots{}
+\item Ajout de données hétérogènes (THRS, Radar)
+\item Adaptation de domaines
+\end{itemize}
+\item Nomenclature
+\begin{itemize}
+\item Plus de classes ? D'autres classes ?
+\item Occupation/Utilisation
+\end{itemize}
+\item Données de références
+\end{itemize}
+\end{frame}
+\begin{frame}[label=conclusion,standout]{}
+\begin{center}
+Merci de votre attention
+\end{center}
 \end{frame}
 \end{document}
