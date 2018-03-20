@@ -251,7 +251,7 @@
   \only<3>{\includegraphics[width=0.8\linewidth]{figures/ensg_oso_20m.png}}
 \end{center}
 #+END_EXPORT
-** Précision de classification
+** Précision de classification 1/2
 :PROPERTIES:
 :BEAMER_opt: fragile
 :END:
@@ -295,6 +295,19 @@
 }
 \end{center}
 #+END_EXPORT
+** Précision de classification 2/2
+- Validation indépendante *SIRS*
+  + 10 m : 81.4 \(\pm\) 3.68 % d'accord global
+  + 20 m : 81.1 \(\pm\) 3.65 % d'accord global
+  + http://www.cesbio.ups-tlse.fr/multitemp/?p=12869
+- Validation données externes
+  #+BEGIN_CENTER
+  http://www.cesbio.ups-tlse.fr/multitemp/?p=11835
+  #+END_CENTER
+
+#+ATTR_LATEX: :width 0.5\textwidth
+[[file:./figures/verif_dynafor.png]]
+
 * La chaîne de traitements                                           :export:
 ** Étapes de traitements
 

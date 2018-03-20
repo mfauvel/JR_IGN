@@ -1,4 +1,4 @@
-% Created 2018-03-19 Mon 12:13
+% Created 2018-03-20 Tue 17:28
 % Intended LaTeX compiler: pdflatex
 \documentclass[pressentation,10pt,aspectratio=1610, xcolor=table]{beamer}
 \usepackage[utf8]{inputenc}
@@ -94,8 +94,8 @@ minimum height=4em, drop shadow]
 \end{frame}
 
 \section{Occupation et usage des sols par télédétection}
-\label{sec:org74b2246}
-\begin{frame}[fragile,label={sec:org33a7219}]{Occupation et usage des sols}
+\label{sec:org2565b23}
+\begin{frame}[fragile,label={sec:org7d22c4f}]{Occupation et usage des sols}
 \tikzset{grow cyclic list/.code={%
   \def\tikzgrowthpositions{{#1}}%
   \foreach \n [count=\i,remember=\i]in {#1}{}%
@@ -161,7 +161,7 @@ minimum height=4em, drop shadow]
 \end{frame}
 
 
-\begin{frame}[label={sec:org26543b6}]{OCS \& télédétection}
+\begin{frame}[label={sec:orgc2c743e}]{OCS \& télédétection}
 \begin{columns}
 \begin{column}{0.5\columnwidth}
 \begin{itemize}
@@ -185,7 +185,7 @@ $$ f:\mathbf{x} \mapsto z $$
 \end{column}
 \end{columns}
 \end{frame}
-\begin{frame}[label={sec:org0569d29}]{CES OSO}
+\begin{frame}[label={sec:orgde6693c}]{CES OSO}
 \begin{center}
 \includegraphics[width=0.8\linewidth]{./figures/imagesat_oso.jpg}
 \end{center}
@@ -210,8 +210,8 @@ $$ f:\mathbf{x} \mapsto z $$
 \end{frame}
 
 \section{Le produit OSO actuel}
-\label{sec:org7da76dc}
-\begin{frame}[label={sec:org039e2ee}]{Caractéristiques}
+\label{sec:org7805502}
+\begin{frame}[label={sec:orgee682cf}]{Caractéristiques}
 \begin{itemize}
 \item Une cartographie annuelle gratuite et rapidement disponible,
 \begin{itemize}
@@ -235,12 +235,12 @@ Scale Using Satellite Image  Time Series}.  \(\textsc{Remote Sens.}\)
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org0393748}]{Nomenclature actuelle}
+\begin{frame}[label={sec:org612831b}]{Nomenclature actuelle}
 \begin{columns}
 \begin{column}{0.5\columnwidth}
 \small
 \begin{itemize}
-\item Surface artificielles
+\item Surfaces artificielles
 \begin{description}
 \item[{CUF}] Continuous urban fabric (CLC 111)
 \item[{DUF}] Discontinuous urban fabric (CLC 112)
@@ -279,20 +279,20 @@ Scale Using Satellite Image  Time Series}.  \(\textsc{Remote Sens.}\)
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:orgcb27afc}]{OCS France pour 2016}
+\begin{frame}[label={sec:org2dfce11}]{OCS France pour 2016}
 \begin{center}
 \includegraphics[width=\linewidth]{./figures/OSO_V4.png}
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:org48cff80}]{Zoom}
+\begin{frame}[label={sec:orgfc1cb35}]{Zoom}
 \begin{center}
   \only<1>{\includegraphics[width=0.8\linewidth]{figures/ensg_ortho.png}}
   \only<2>{\includegraphics[width=0.8\linewidth]{figures/ensg_oso_10m.png}}
   \only<3>{\includegraphics[width=0.8\linewidth]{figures/ensg_oso_20m.png}}
 \end{center}
 \end{frame}
-\begin{frame}[fragile,label={sec:org204fe07}]{Précision de classification}
+\begin{frame}[fragile,label={sec:orga1727c4}]{Précision de classification 1/2}
 \scriptsize
 \pgfplotstableset{
     color cells/.style={
@@ -331,9 +331,28 @@ Scale Using Satellite Image  Time Series}.  \(\textsc{Remote Sens.}\)
 }
 \end{center}
 \end{frame}
+\begin{frame}[label={sec:org0e1dbca}]{Précision de classification 2/2}
+\begin{itemize}
+\item Validation indépendante \textbf{SIRS}
+\begin{itemize}
+\item 10 m : 81.4 \(\pm\) 3.68 \% d'accord global
+\item 20 m : 81.1 \(\pm\) 3.65 \% d'accord global
+\item \url{http://www.cesbio.ups-tlse.fr/multitemp/?p=12869}
+\end{itemize}
+\item Validation données externes
+\begin{center}
+\url{http://www.cesbio.ups-tlse.fr/multitemp/?p=11835}
+\end{center}
+\end{itemize}
+
+\begin{center}
+\includegraphics[width=0.5\textwidth]{./figures/verif_dynafor.png}
+\end{center}
+\end{frame}
+
 \section{La chaîne de traitements}
-\label{sec:org9f20d00}
-\begin{frame}[label={sec:org23dd673}]{Étapes de traitements}
+\label{sec:org33d0f33}
+\begin{frame}[label={sec:orgcf37b98}]{Étapes de traitements}
   \begin{center}
     \begin{tikzpicture}[font=\scriptsize, transform shape,scale=0.72]
       \path \datanode{inref}{Reference Data};
@@ -378,7 +397,7 @@ Scale Using Satellite Image  Time Series}.  \(\textsc{Remote Sens.}\)
     \end{tikzpicture}
 \end{center}
 \end{frame}
-\begin{frame}[label={sec:org61b0952}]{Extraction des données d'entraînement/validation}
+\begin{frame}[label={sec:org88e07cd}]{Extraction des données d'entraînement/validation}
 \begin{onlyenv}<1>
 \begin{center}
   \begin{tikzpicture}[font=\scriptsize, scale=0.52, transform shape]
@@ -456,7 +475,7 @@ Scale Using Satellite Image  Time Series}.  \(\textsc{Remote Sens.}\)
 \end{onlyenv}
 \end{frame}
 
-\begin{frame}[label={sec:org40e57e0}]{Ré-échantillonage temporel}
+\begin{frame}[label={sec:org6938bd2}]{Ré-échantillonage temporel}
 \begin{onlyenv}<1>
 \begin{center}
 \begin{center}
@@ -486,7 +505,7 @@ Scale Using Satellite Image  Time Series}.  \(\textsc{Remote Sens.}\)
 \end{center}
 \end{onlyenv}
 \end{frame}
-\begin{frame}[label={sec:org61fd185}]{Classification}
+\begin{frame}[label={sec:orgf5e52a4}]{Classification}
 \begin{columns}
 \begin{column}{0.55\columnwidth}
 \begin{itemize}
@@ -508,8 +527,8 @@ Scale Using Satellite Image  Time Series}.  \(\textsc{Remote Sens.}\)
 \end{columns}
 \end{frame}
 \section{Conclusions et perspectives}
-\label{sec:org4a2b6c7}
-\begin{frame}[label={sec:org7c7e9ef}]{Conclusions}
+\label{sec:org6034874}
+\begin{frame}[label={sec:org9038651}]{Conclusions}
 \begin{itemize}
 \item Produits disponibles : 
 \begin{itemize}
@@ -521,7 +540,7 @@ Scale Using Satellite Image  Time Series}.  \(\textsc{Remote Sens.}\)
 \item Possibilité de re-traiter la donnée antérieure
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:orgb60cdf9}]{Perspectives}
+\begin{frame}[label={sec:org96d29a2}]{Perspectives}
 \begin{itemize}
 \item Classification
 \begin{itemize}
@@ -542,7 +561,7 @@ Scale Using Satellite Image  Time Series}.  \(\textsc{Remote Sens.}\)
 Merci de votre attention
 \end{center}
 \end{frame}
-\begin{frame}[label={sec:org30597b6}]{}
+\begin{frame}[label={sec:org3177e75}]{}
 \begin{center}
 \tiny Creative Commons Attribution-ShareAlike 4.0 Unported License
 \normalsize
